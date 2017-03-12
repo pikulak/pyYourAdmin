@@ -1,25 +1,11 @@
 import React from 'react'
 import axios from 'axios'
-import injectTapEventPlugin from 'react-tap-event-plugin'
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
+
 import AppBar from 'material-ui/AppBar'
 import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
-import { lightBlue500 } from 'material-ui/styles/colors'
 
-injectTapEventPlugin();
-
-const muiTheme = getMuiTheme({
-    palette: {
-        primary1Color: lightBlue500,
-        primary2Color: lightBlue500
-    },
-    appBar: {
-        height: 50
-    }
-})
 
 const style = {
     drawer: {
@@ -74,8 +60,7 @@ export default class App extends React.Component {
           contentStyle.marginLeft = 256;
 
         return(
-         <MuiThemeProvider muiTheme={ muiTheme }>
-            <div>
+         <div>
             <AppBar
              style= { style.bar }
              title="Database Management System"
@@ -99,8 +84,7 @@ export default class App extends React.Component {
                 <h2>{ this.state.data.databaseName }</h2>
             </div>
 
-            </div>
-         </MuiThemeProvider>
+        </div>
          )
     }
 }

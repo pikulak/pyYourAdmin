@@ -12,7 +12,8 @@ module.exports = {
         query: {
           presets: ['es2016', 'react']
         }
-      }
+      },
+      { test: /\.css$/, loader: "style-loader!css-loader" }
     ]
   },
 };
