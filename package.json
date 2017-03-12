@@ -1,0 +1,19 @@
+{
+  "name": "eight_hour_coding_challenge",
+  "version": "0.0.1",
+  "description": "Eight hour coding challenge",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pikulak/eight_hour_coding_challenge.git"
+  },
+  "author": "Kacper Pikulski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pikulak/eight_hour_coding_challenge/issues"
+  },
+  "homepage": "https://github.com/pikulak/eight_hour_coding_challenge#readme"
+}
