@@ -98,7 +98,8 @@ def connect():
             response["status"] = "success"
             return jsonify(**response)
     except KeyError:
-        return make_response(jsonify(**response), 401)
+        pass
+    return make_response(jsonify(**response), 401)
 
 
 @app.route("/api/database/disconnect", methods=["GET", "POST"])
@@ -112,10 +113,10 @@ def disconnect():
 
 
 @login_required
-@app.route("/api/databases/", methods=["GET"])
-def get_databases():
+@app.route("/api/database/name/", methods=["GET"])
+def get_database_name():
     response = {
-        "database": "dupadupa"
+        "database": current_user.database
     }
     return jsonify(**response)
 
@@ -125,10 +126,10 @@ def is_connected():
     is_connected_ = False
     if current_user.is_authenticated:
         is_connected_ = True
-    print(is_connected_)
     response = {
         "is_connected": is_connected_
     }
+    print(is_connected_)
     return jsonify(**response)
 
 
