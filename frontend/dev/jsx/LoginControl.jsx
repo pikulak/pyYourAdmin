@@ -5,9 +5,9 @@ injectTapEventPlugin();
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import { lightBlue500 } from 'material-ui/styles/colors'
+import { lightBlue500, Red500 } from 'material-ui/styles/colors'
 
-import ConnectForm from './ConnectForm.jsx'
+import Connect from './Connect.jsx'
 import App from './App.jsx'
 
 const muiTheme = getMuiTheme({
@@ -23,22 +23,22 @@ const muiTheme = getMuiTheme({
 export default class LoginControl extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {isLoggedIn: false};
+        this.state = {isConnected: false};
     }
     componentWillMount(){
-        axios.get("/api/user/is_authenticated/")
+        axios.get("/api/database/is_connected/")
             .then(response => {
-                this.setState({isLoggedIn: response.data.is_authenticated});
+                this.setState({isConnected: response.data.is_connected});
             })
     }
     render(){
-        const isLoggedIn = this.state.isLoggedIn
+        const isConnected = this.state.isConnected
         return (
-            <MuiThemeProvider>
-                {isLoggedIn ? (
+            <MuiThemeProvider muiTheme={ muiTheme }>
+                {isConnected ? (
                     <App />
                 ) : (
-                    <ConnectForm />
+                    <Connect />
                 )}
             </MuiThemeProvider>
         )
