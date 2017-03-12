@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import cookie from 'react-cookie'
+
 import injectTapEventPlugin from 'react-tap-event-plugin'
 injectTapEventPlugin();
 
@@ -23,12 +25,13 @@ const muiTheme = getMuiTheme({
 export default class LoginControl extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {isConnected: false};
+        this.state = {isConnected: cookie.load("isConnected")};
     }
     componentWillMount(){
         axios.get("/api/database/is_connected/")
             .then(response => {
                 this.setState({isConnected: response.data.is_connected});
+                cookie.save("isConnected", response.data.is_connected, { path: '/'} )
             })
     }
     render(){

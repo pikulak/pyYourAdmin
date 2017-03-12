@@ -11,13 +11,14 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 
+
 class Database(UserMixin):
     databases = {"testdb": {
         "host": "host",
         "port": "5423",
         "database": "testdb",
         "username": "username",
-        "password": "password"}}
+        "password": "password" }}
 
     def __init__(self, **kwargs):
         self._id = kwargs["database"]

@@ -76,7 +76,9 @@ export default class App extends React.Component {
                  title={ this.state.data.databaseName }
                  showMenuIconButton={ false } />
 
-                <MenuItem>Menu item </MenuItem>
+                <MenuItem>Users</MenuItem>
+                <MenuItem>Articles</MenuItem>
+                <MenuItem>Filmse</MenuItem>
             </Drawer>
 
             <div style={ contentStyle }>
