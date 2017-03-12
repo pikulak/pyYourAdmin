@@ -5,6 +5,7 @@ import axios from 'axios'
 import AppBar from 'material-ui/AppBar'
 import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
 const style = {
     drawer: {
@@ -34,15 +35,13 @@ export default class App extends React.Component {
         }
     }
     componentWillMount(){
-        axios.get("/api/databases/")
+        axios.get("/api/database/name/")
             .then(response => {
                 this.setState( {data: {databaseName: response.data.database} } );
             })
     }
 
     handleDrawerToggle(){
-
-
         this.setState({
             drawer: {
                 open: !this.state.drawer.open
@@ -56,7 +55,7 @@ export default class App extends React.Component {
         }
 
         if (this.state.drawer.open)
-          contentStyle.marginLeft = 256;
+          contentStyle.marginLeft = 290;
 
         return(
          <div>
@@ -83,6 +82,37 @@ export default class App extends React.Component {
 
             <div style={ contentStyle }>
                 <h2>{ this.state.data.databaseName }</h2>
+                <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHeaderColumn>ID</TableHeaderColumn>
+                        <TableHeaderColumn>Name</TableHeaderColumn>
+                        <TableHeaderColumn>Status</TableHeaderColumn>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      <TableRow>
+                        <TableRowColumn>1</TableRowColumn>
+                        <TableRowColumn>John Smith</TableRowColumn>
+                        <TableRowColumn>Employed</TableRowColumn>
+                      </TableRow>
+                      <TableRow>
+                        <TableRowColumn>2</TableRowColumn>
+                        <TableRowColumn>Randal White</TableRowColumn>
+                        <TableRowColumn>Unemployed</TableRowColumn>
+                      </TableRow>
+                      <TableRow>
+                        <TableRowColumn>3</TableRowColumn>
+                        <TableRowColumn>Stephanie Sanders</TableRowColumn>
+                        <TableRowColumn>Employed</TableRowColumn>
+                      </TableRow>
+                      <TableRow>
+                        <TableRowColumn>4</TableRowColumn>
+                        <TableRowColumn>Steve Brown</TableRowColumn>
+                        <TableRowColumn>Employed</TableRowColumn>
+                      </TableRow>
+                    </TableBody>
+              </Table>
             </div>
 
         </div>

@@ -35,13 +35,13 @@ export default class LoginControl extends React.Component {
             })
     }
     render(){
-        const isConnected = this.state.isConnected
+        var isConnected = this.state.isConnected
         return (
             <MuiThemeProvider muiTheme={ muiTheme }>
-                {isConnected ? (
+                {(isConnected === true) ? (
                     <App />
                 ) : (
-                    <Connect />
+                    (isConnected == false) ? (<Connect />) : (null)
                 )}
             </MuiThemeProvider>
         )
