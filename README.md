@@ -1,5 +1,10 @@
-# eight_hour_coding_challenge
-Trying to write something useful for eight hours
+# What I want to learn
+ * AJAX requests via JS
+ * user flow in ReactJS
+ * rendering flow in ReactJS
+ * MaterialUI
+ * API versioning
+
 
 # Work done for eight hours:
   * authentication (backend and frontend)
