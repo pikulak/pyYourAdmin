@@ -6,8 +6,10 @@ Trying to write something useful for eight hours
   * connect form
   * drawer (get database name from API (with AJAX)
   * table (mock)
+  
 # Screenshots
  * https://github.com/pikulak/eight_hour_coding_challenge/tree/master/screenshots
+ 
 # What I learned through these eight hours?
   * AJAX requests via JS
   * componentWillMount(), componentWillUnmount() from ReactJS
