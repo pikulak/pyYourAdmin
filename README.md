@@ -1,4 +1,4 @@
-# What I want to learn
+# What I want to learn?
  * AJAX requests via JS
  * user flow in ReactJS
  * rendering flow in ReactJS
@@ -30,5 +30,5 @@
 # Work done after challenge
   * not yet
   
-# What I learned after challenge
+# What I learned after challenge?
   * not yet
