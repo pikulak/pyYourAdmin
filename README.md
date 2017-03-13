@@ -14,6 +14,11 @@
   
 # Screenshots
  * https://github.com/pikulak/eight_hour_coding_challenge/tree/master/screenshots
+ *      "host": "host",
+        "port": "5423",
+        "database": "testdb",
+        "username": "username",
+        "password": "password"
  
 # Live
  * http://srv01.mikr.us:20210/
