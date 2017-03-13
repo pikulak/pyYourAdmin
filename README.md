@@ -10,6 +10,9 @@ Trying to write something useful for eight hours
 # Screenshots
  * https://github.com/pikulak/eight_hour_coding_challenge/tree/master/screenshots
  
+# Live
+ * http://srv01.mikr.us:20210/
+
 # What I learned through these eight hours?
   * AJAX requests via JS
   * componentWillMount(), componentWillUnmount() from ReactJS
