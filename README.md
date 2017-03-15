@@ -1,5 +1,10 @@
-# eight_hour_coding_challenge
-Trying to write something useful for eight hours
+# What I want to learn?
+ * AJAX requests via JS
+ * user flow in ReactJS
+ * rendering flow in ReactJS
+ * MaterialUI
+ * API versioning
+
 
 # Work done for eight hours:
   * authentication (backend and frontend)
@@ -9,7 +14,15 @@ Trying to write something useful for eight hours
   
 # Screenshots
  * https://github.com/pikulak/eight_hour_coding_challenge/tree/master/screenshots
+ *      "host": "host",
+        "port": "5423",
+        "database": "testdb",
+        "username": "username",
+        "password": "password"
  
+# Live
+ * http://srv01.mikr.us:20210/
+
 # What I learned through these eight hours?
   * AJAX requests via JS
   * componentWillMount(), componentWillUnmount() from ReactJS
@@ -22,5 +35,5 @@ Trying to write something useful for eight hours
 # Work done after challenge
   * not yet
   
-# What I learned after challenge
+# What I learned after challenge?
   * not yet
