@@ -32,10 +32,3 @@ class DatabaseSessionsContainer:
             return False
 
 
-DatabaseSessionsContainer.add("cycki", database="test",
-                              host="192.168.1.104",
-                              password="test",
-                              port=5432,
-                              username="test")
-
-
