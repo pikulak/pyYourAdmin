@@ -8,5 +8,6 @@ app.register_blueprint(dbms_api)
 app.secret_key = "some_secret"
 app.config["DEBUG"] = True
 login_manager.init_app(app)
+app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 app.run(host='0.0.0.0', port=80)

@@ -38,8 +38,9 @@ def disconnect():
     return jsonify(**response)
 
 
-@login_required
+
 @dbms_api.route("/api/database/name/", methods=["GET"])
+@login_required
 def get_database_name():
     response = {
         "database": current_user.database
