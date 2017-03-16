@@ -1,22 +1,11 @@
 from flask_login import LoginManager, UserMixin
+from containers.databases import DatabaseEnginesContainer
 
 login_manager = LoginManager()
 
-class Database(UserMixin):
-    databases = {"testdb": {
-        "host": "host",
-        "port": "5423",
-        "database": "testdb",
-        "username": "username",
-        "password": "password" }}
-
-    def __init__(self, **kwargs):
-        self._id = kwargs["database"]
-        self._host = kwargs["host"]
-        self._port = kwargs["port"]
-        self._database = kwargs["database"]
-        self._username = kwargs["username"]
-        self._password = kwargs["password"]
+class TemporaryDatabaseUser(UserMixin):
+    def __init__(self, db_id):
+        self._id = db_id
 
     @property
     def id(self):
@@ -42,26 +31,14 @@ class Database(UserMixin):
     def password(self):
         return self._password
 
-    @classmethod
-    def get(cls, id):
-        try:
-            return cls.databases[id]
-        except KeyError:
-            return None
-
-    def validate(self):
-        database = self.get(self._id)
-        if database is None:
-            return False
-        elif database["password"] == self._password:
-            return True
-        else:
-            return False
+    @staticmethod
+    def get(id):
+        return DatabaseEnginesContainer.get(id)
 
 @login_manager.user_loader
-def load_database(id):
-    database_entry = Database.get(id)
-    if database_entry is not None:
-        database = Database(**database_entry)
-        return database
-    return None
+def load_database_session(id):
+    database_user_entry = TemporaryDatabaseUser.get(id)
+    if database_user_entry:
+        return TemporaryDatabaseUser(id)
+    else:
+        return None
