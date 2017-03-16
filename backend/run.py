@@ -30,7 +30,6 @@ app.add_url_rule('/api/tables/<string:table_name>',
                  view_func=table_view,
                  methods=['GET', 'PUT', 'DELETE'])
 
-app.secret_key = "some_secret"
 app.config["DEBUG"] = True
 login_manager.init_app(app)
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
