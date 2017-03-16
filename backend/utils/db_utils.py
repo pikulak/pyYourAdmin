@@ -17,3 +17,6 @@ def check_db_connection(engine):
         return True
     except OperationalError:
         return False
+
+def get_db_name(engine):
+    return engine.engine.url.database

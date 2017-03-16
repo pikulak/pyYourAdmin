@@ -17,3 +17,9 @@ class DatabaseEnginesContainer:
         else:
             return False
 
+    @classmethod
+    def delete(cls, db_id):
+        if db_id in cls.databases:
+            del cls.databases[db_id]
+
+
