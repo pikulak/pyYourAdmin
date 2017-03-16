@@ -1,39 +1,16 @@
-# What I want to learn?
- * AJAX requests via JS
- * user flow in ReactJS
- * rendering flow in ReactJS
- * MaterialUI
- * API versioning
-
-
-# Work done for eight hours:
-  * authentication (backend and frontend)
-  * connect form
-  * drawer (get database name from API (with AJAX)
-  * table (mock)
-  
-# Screenshots
- * https://github.com/pikulak/eight_hour_coding_challenge/tree/master/screenshots
- *      "host": "host",
-        "port": "5423",
-        "database": "testdb",
-        "username": "username",
-        "password": "password"
+# What is pyYourAdmin?
+ * pyYourAdmin is continuation of my eight hours coding challange
+ * pyYourAdmin helps you with managing a database
+ * pyYourAdmin is a copy of phpMyAdmin designed in Material Design
  
-# Live
- * http://srv01.mikr.us:20210/
+# What I used to write pyYourAdmin?
+ * SQLalchemy
+ * Flask
+ * ReactJS
+ * MaterialUI (extension for ReactJS)
+ 
+# How to install it?
+ * It doesn't need to be installed. Just clone and run /backend/run.py, then go to the localhost:80 in your browser
+ 
+ 
 
-# What I learned through these eight hours?
-  * AJAX requests via JS
-  * componentWillMount(), componentWillUnmount() from ReactJS
-  * rendering flow in ReactJS
-  * hooking pressed keys
-  * MaterialUI: AppBar, Drawer, Buttons, on*, TextField etc. (I was supposed to look in source code, because official docs were outdated)
-  * axios by default send data as JSON, not application/x-www-form-urlencoded
-  * custom theme in MaterialUI
-
-# Work done after challenge
-  * not yet
-  
-# What I learned after challenge?
-  * not yet
