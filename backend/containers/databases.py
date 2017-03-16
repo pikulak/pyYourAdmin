@@ -1,9 +1,5 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
-from sqlalchemy.engine import url
 
-
-class DatabaseSessionsContainer:
+class DatabaseEnginesContainer:
     databases = {}
 
     @classmethod
@@ -13,22 +9,17 @@ class DatabaseSessionsContainer:
         else:
             return False
 
-
     @classmethod
-    def add(cls, db_id, **db_props):
+    def add(cls, db_id, engine):
         if not db_id in cls.databases:
-            db_props["drivername"] = "postgresql+psycopg2"
-            engine = create_engine(url.URL(**db_props),
-                                   convert_unicode=True,
-                                   encoding="utf8")
-
-            session = sessionmaker(autocommit=False,
-                                   autoflush=False,
-                                   bind=engine)()
-
-            cls.databases[db_id] = session
+            cls.databases[db_id] = engine
             return True
         else:
             return False
+
+    @classmethod
+    def delete(cls, db_id):
+        if db_id in cls.databases:
+            del cls.databases[db_id]
 
 
