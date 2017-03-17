@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
-
+import {observable} from "mobx"
+import {observer} from "mobx-react"
 
 import AppBar from 'material-ui/AppBar'
 import Drawer from 'material-ui/Drawer'
@@ -15,10 +16,22 @@ const style = {
     },
     bar: {
         textAlign: "center",
+    },
+    menuItem: {
+        fontSize: 13,
+        lineHeight:"32px",
+        minHeight:12
+    },
+    menu: {
+        marginTop:15
     }
 }
 
-export default class App extends React.Component {
+export default @observer class App extends React.Component {
+    @observable data = {
+        tableNames:[]
+    }
+
     constructor(props){
         super(props)
         this.handleDrawerToggle = this.handleDrawerToggle.bind(this)
@@ -28,17 +41,23 @@ export default class App extends React.Component {
             },
             container: {
                 marginLeft: 0
-            },
-            data: {
-                databaseName: ""
             }
         }
     }
-    componentWillMount(){
-        axios.get("/api/database/name/")
+
+    componentDidMount(){
+        axios.get("/api/database/")
             .then(response => {
-                this.setState( {data: {databaseName: response.data.database} } );
-            })
+                this.data.databaseName = response.data.database
+                this.forceUpdate()
+        })
+
+        axios.get("/api/tables/")
+            .then(response => {
+                this.data.tableNames = response.data
+                this.forceUpdate()
+        })
+
     }
 
     handleDrawerToggle(){
@@ -51,9 +70,8 @@ export default class App extends React.Component {
 
     render() {
         const contentStyle = {
-            transition: 'margin-left 450ms cubic-bezier(0.23, 1, 0.32, 1)'
+            transition: 'margin-left 450ms cubic-bezier(0.23, 1, 0.32, 1)',
         }
-
         if (this.state.drawer.open)
           contentStyle.marginLeft = 290;
 
@@ -72,16 +90,19 @@ export default class App extends React.Component {
              overlayStyle ={ style.drawer.overlay }>
 
                 <AppBar
-                 title={ this.state.data.databaseName }
+                 title={ this.data.databaseName }
                  showMenuIconButton={ false } />
-
-                <MenuItem>Users</MenuItem>
-                <MenuItem>Articles</MenuItem>
-                <MenuItem>Filmse</MenuItem>
+                <div style={ style.menu }>
+                {this.data.tableNames.map( (tableName, index) => (
+                    <MenuItem key={index} style={ style.menuItem } innerDivStyle={ style.menuItem }>
+                        { tableName }
+                    </MenuItem>
+                ))}
+                </div>
             </Drawer>
 
             <div style={ contentStyle }>
-                <h2>{ this.state.data.databaseName }</h2>
+                <h2>{ this.data.databaseName }</h2>
                 <Table>
                     <TableHeader>
                       <TableRow>

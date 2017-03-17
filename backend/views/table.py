@@ -1,14 +1,17 @@
 from flask import jsonify, session
 from flask.views import MethodView
 from flask_login import login_required
+from containers.databases import DatabaseEnginesContainer
 
 class TableEndpoint(MethodView):
     decorators = [login_required]
 
     def get(self, table_name):
         if table_name is None:
-            #return a list of tables
-            pass
+            db_id = session['db_id']
+            engine = DatabaseEnginesContainer.get(db_id)
+            tables = engine.table_names()
+            return jsonify(*tables)
         else:
             #expose a single table
             pass
