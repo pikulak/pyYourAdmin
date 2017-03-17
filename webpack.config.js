@@ -10,7 +10,8 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
-          presets: ['es2016', 'react']
+            plugins: ['transform-decorators-legacy', 'transform-class-properties'],
+            presets: ['es2016', 'react']
         }
       },
       { test: /\.css$/, loader: "style-loader!css-loader" }
