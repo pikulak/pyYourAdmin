@@ -2,6 +2,8 @@ from flask import jsonify, session
 from flask.views import MethodView
 from flask_login import login_required
 from containers.databases import DatabaseEnginesContainer
+from sqlalchemy.sql import select, table, column
+from utils.db_utils import parse_table_result
 
 class TableEndpoint(MethodView):
     decorators = [login_required]
@@ -13,8 +15,12 @@ class TableEndpoint(MethodView):
             tables = engine.table_names()
             return jsonify(*tables)
         else:
-            #expose a single table
-            pass
+            db_id = session['db_id']
+            engine = DatabaseEnginesContainer.get(db_id)
+            table_expression = table(table_name)
+            stmt = select(['*', table_expression], bind=engine)
+            result = engine.execute(stmt)
+            return jsonify(*parse_table_result(result))
 
     def post(self):
         # create a new table

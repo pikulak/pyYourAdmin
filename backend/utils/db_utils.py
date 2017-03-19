@@ -20,3 +20,13 @@ def check_db_connection(engine):
 
 def get_db_name(engine):
     return engine.engine.url.database
+
+def parse_table_result(result):
+    jsonifed_result = []
+    column_names = result.keys()
+    for row in result.fetchall():
+        prepare = {}
+        for index, column in enumerate(column_names):
+            prepare[column] = row[index]
+        jsonifed_result.append(prepare)
+    return jsonifed_result
