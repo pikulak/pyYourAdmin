@@ -2,11 +2,11 @@ import React from 'react'
 import axios from 'axios'
 import {observable} from "mobx"
 import {observer} from "mobx-react"
-
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 import AppBar from 'material-ui/AppBar'
 import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import DatabaseTable  from './Table.jsx'
 
 const style = {
     drawer: {
@@ -59,7 +59,6 @@ export default @observer class App extends React.Component {
         })
 
     }
-
     handleDrawerToggle(){
         this.setState({
             drawer: {
@@ -71,72 +70,44 @@ export default @observer class App extends React.Component {
     render() {
         const contentStyle = {
             transition: 'margin-left 450ms cubic-bezier(0.23, 1, 0.32, 1)',
+            marginLeft: 30
         }
         if (this.state.drawer.open)
-          contentStyle.marginLeft = 290;
+          contentStyle.marginLeft = 286;
 
         return(
-         <div>
-            <AppBar
-             style= { style.bar }
-             title="Database Management System"
-             onLeftIconButtonTouchTap={ this.handleDrawerToggle } />
-
-            <Drawer
-             open={ this.state.drawer.open }
-             docked={ false }
-             onRequestChange={(open) => this.setState({drawer:{open}}) }
-             zDepth={ 1 }
-             overlayStyle ={ style.drawer.overlay }>
-
+         <Router>
+            <div>
                 <AppBar
-                 title={ this.data.databaseName }
-                 showMenuIconButton={ false } />
-                <div style={ style.menu }>
-                {this.data.tableNames.map( (tableName, index) => (
-                    <MenuItem key={index} style={ style.menuItem } innerDivStyle={ style.menuItem }>
-                        { tableName }
-                    </MenuItem>
-                ))}
+                 style= { style.bar }
+                 title="pyYourAdmin"
+                 onLeftIconButtonTouchTap={ this.handleDrawerToggle } />
+
+                <Drawer
+                 open={ this.state.drawer.open }
+                 docked={ false }
+                 onRequestChange={(open) => this.setState({drawer:{open}}) }
+                 zDepth={ 1 }
+                 overlayStyle ={ style.drawer.overlay }>
+
+                    <AppBar
+                     title={ this.data.databaseName }
+                     showMenuIconButton={ false } />
+                    <div style={ style.menu }>
+                    {this.data.tableNames.map( (tableName, index) => (
+                        <Link to={"/tables/" + tableName } key={index}>
+                            <MenuItem style={ style.menuItem } innerDivStyle={ style.menuItem }>
+                                { tableName }
+                            </MenuItem>
+                         </Link>
+                    ))}
+                    </div>
+                </Drawer>
+                <div style={ contentStyle }>
+                    <Route path="/tables/:tableName" component={ DatabaseTable }/>
                 </div>
-            </Drawer>
-
-            <div style={ contentStyle }>
-                <h2>{ this.data.databaseName }</h2>
-                <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHeaderColumn>ID</TableHeaderColumn>
-                        <TableHeaderColumn>Name</TableHeaderColumn>
-                        <TableHeaderColumn>Status</TableHeaderColumn>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      <TableRow>
-                        <TableRowColumn>1</TableRowColumn>
-                        <TableRowColumn>John Smith</TableRowColumn>
-                        <TableRowColumn>Employed</TableRowColumn>
-                      </TableRow>
-                      <TableRow>
-                        <TableRowColumn>2</TableRowColumn>
-                        <TableRowColumn>Randal White</TableRowColumn>
-                        <TableRowColumn>Unemployed</TableRowColumn>
-                      </TableRow>
-                      <TableRow>
-                        <TableRowColumn>3</TableRowColumn>
-                        <TableRowColumn>Stephanie Sanders</TableRowColumn>
-                        <TableRowColumn>Employed</TableRowColumn>
-                      </TableRow>
-                      <TableRow>
-                        <TableRowColumn>4</TableRowColumn>
-                        <TableRowColumn>Steve Brown</TableRowColumn>
-                        <TableRowColumn>Employed</TableRowColumn>
-                      </TableRow>
-                    </TableBody>
-              </Table>
             </div>
-
-        </div>
+         </Router>
          )
     }
 }

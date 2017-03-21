@@ -20,7 +20,7 @@ class TableEndpoint(MethodView):
             table_expression = table(table_name)
             stmt = select(['*', table_expression], bind=engine)
             result = engine.execute(stmt)
-            return jsonify(*parse_table_result(result))
+            return jsonify(**parse_table_result(result))
 
     def post(self):
         # create a new table

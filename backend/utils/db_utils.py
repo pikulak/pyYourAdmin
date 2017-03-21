@@ -22,11 +22,13 @@ def get_db_name(engine):
     return engine.engine.url.database
 
 def parse_table_result(result):
-    jsonifed_result = []
+    jsonifed_result = {}
     column_names = result.keys()
+    jsonifed_result["columns"] = column_names
+    jsonifed_result["rows"] = []
     for row in result.fetchall():
-        prepare = {}
-        for index, column in enumerate(column_names):
-            prepare[column] = row[index]
-        jsonifed_result.append(prepare)
+        prepare_row = []
+        for column in row:
+            prepare_row.append(column)
+        jsonifed_result["rows"].append(prepare_row)
     return jsonifed_result

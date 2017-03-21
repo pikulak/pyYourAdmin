@@ -1,5 +1,5 @@
-
-from flask import Flask
+import decimal
+from flask import Flask, json
 from login_manager import login_manager
 from api import dbms_api
 
@@ -29,6 +29,18 @@ app.add_url_rule('/api/tables/',
 app.add_url_rule('/api/tables/<string:table_name>',
                  view_func=table_view,
                  methods=['GET', 'PUT', 'DELETE'])
+
+
+
+class MyJSONEncoder(json.JSONEncoder):
+
+    def default(self, obj):
+        if isinstance(obj, decimal.Decimal):
+            # Convert decimal instances to strings.
+            return str(obj)
+        return super(MyJSONEncoder, self).default(obj)
+
+app.json_encoder = MyJSONEncoder
 
 app.config["DEBUG"] = True
 login_manager.init_app(app)
