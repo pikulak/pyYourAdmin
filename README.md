@@ -3,6 +3,10 @@
  * pyYourAdmin helps you with managing a database
  * pyYourAdmin is a copy of phpMyAdmin designed in Material Design
  
+# Features
+ * Table view
+ 
+ 
 # What I used to write pyYourAdmin?
  * SQLalchemy
  * Flask
@@ -11,6 +15,5 @@
  
 # How to install it?
  * It doesn't need to be installed. Just clone and run /backend/run.py, then go to the localhost:80 in your browser
- 
  
 
