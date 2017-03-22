@@ -6,7 +6,14 @@
 # Features
  * Table view
  
- 
+# Live demo
+ * http://193.70.89.124/
+ * host: localhost
+   port: 5432
+   database: demo
+   user: demo
+   password demo
+   
 # What I used to write pyYourAdmin?
  * SQLalchemy
  * Flask
