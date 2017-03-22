@@ -29,6 +29,6 @@ def parse_table_result(result):
     for row in result.fetchall():
         prepare_row = []
         for column in row:
-            prepare_row.append(column)
+            prepare_row.append(str(column))
         jsonifed_result["rows"].append(prepare_row)
     return jsonifed_result
